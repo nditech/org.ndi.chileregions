@@ -178,5 +178,7 @@ function chileregions_civicrm_enable() {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
 function chileregions_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  chileregions_loadProvinces();
+  if ($op == 'enqueue') {
+    chileregions_loadProvinces();
+  }
 }
