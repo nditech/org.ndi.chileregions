@@ -1,4 +1,16 @@
 <?php
+
+require_once 'chileregions.civix.php';
+
+/**
+ * Implements hook_civicrm_config().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
+ */
+function chileregions_civicrm_config(&$config) {
+  _chileregions_civix_civicrm_config($config);
+}
+
 /**
  * Provide config options for the extension.
  *
@@ -164,19 +176,12 @@ function chileregions_loadProvinces() {
 function chileregions_civicrm_install() {
   chileregions_loadProvinces();
 }
-/**
- * Implements hook_civicrm_enable().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
- */
-function chileregions_civicrm_enable() {
- chileregions_loadProvinces();
-}
+
 /**
  * Implements hook_civicrm_upgrade().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
 function chileregions_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  chileregions_loadProvinces();
+  return _chileregions_civix_civicrm_upgrade($op, $queue);
 }
